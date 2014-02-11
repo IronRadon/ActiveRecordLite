@@ -2,6 +2,7 @@ require_relative './associatable'
 require_relative './db_connection' # use DBConnection.execute freely here.
 require_relative './mass_object'
 require_relative './searchable'
+require 'active_support/inflector'
 
 class SQLObject < MassObject
   extend Searchable
@@ -11,9 +12,9 @@ class SQLObject < MassObject
     @table_name = table_name
   end
 
-  # gets the table_name
+  # gets the table_name; tries to convert the class name if none is given
   def self.table_name
-    @table_name
+    @table_name || self.name.underscore.pluralize
   end
 
   # querys database for all records for this type. (result is array of hashes)
