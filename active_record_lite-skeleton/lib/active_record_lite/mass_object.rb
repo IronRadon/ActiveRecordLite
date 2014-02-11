@@ -2,8 +2,8 @@ class MassObject
 
   # takes a list of attributes.
   # adds attributes to whitelist.
-  def self.my_attr_accessible(*attributes)
-    @attributes = attributes
+  def self.my_attr_accessible(*new_attributes)
+    self.attributes.concat(new_attributes)
   end
 
   # takes a list of attributes.
@@ -21,8 +21,9 @@ class MassObject
 
 
   # returns list of attributes that have been whitelisted.
+  #uses lazy initialization
   def self.attributes
-    @attributes
+    @attributes ||= []
   end
 
   # takes an array of hashes.
