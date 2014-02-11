@@ -2,8 +2,8 @@ class MassObject
 
   # takes a list of attributes.
   # adds attributes to whitelist.
-  def self.my_attr_accessible(*new_attributes)
-    self.attributes.concat(new_attributes)
+  def self.my_attr_accessible(*attributes)
+    @attributes = attributes
   end
 
   # takes a list of attributes.
